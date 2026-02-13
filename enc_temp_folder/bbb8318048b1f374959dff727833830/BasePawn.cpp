@@ -30,8 +30,6 @@ ABasePawn::ABasePawn()
 
 void ABasePawn::HandleDestruction()
 {
-	// 시각/음향 효과
-
 }
 
 void ABasePawn::RotateTurret(FVector LookAtTarget)

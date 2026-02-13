@@ -33,20 +33,12 @@ void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (TankPlayerController)
+	if (PlayerControllerRef)
 	{
 		FHitResult HitResult;
-		TankPlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
+		PlayerControllerRef->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
 		RotateTurret(HitResult.ImpactPoint);
 	}
-}
-
-void ATank::HandleDestruction()
-{
-	Super::HandleDestruction();
-	// 탱크는 파괴하지 않고 숨기기, 타이머 중단
-	SetActorHiddenInGame(true);
-	SetActorTickEnabled(false);
 }
 
 // Called when the game starts or when spawned
@@ -55,7 +47,7 @@ void ATank::BeginPlay()
 	Super::BeginPlay();
 
 	// GetController의 반환형은 ActorController
-	TankPlayerController = Cast<APlayerController>(GetController());
+	PlayerControllerRef = Cast<APlayerController>(GetController());
 }
 
 void ATank::Move(float Value)
