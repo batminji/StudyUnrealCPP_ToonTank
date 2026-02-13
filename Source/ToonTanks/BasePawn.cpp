@@ -48,5 +48,9 @@ void ABasePawn::Fire()
 	// DrawDebugSphere(GetWorld(), ProjectileSpawnPointLocation, 25.f, 12, FColor::Red, false, 3.f);
 
 	// Spawn Actor
-	GetWorld()->SpawnActor<AProjectile>(ProjectileClass, Location, Rotation);
+	AProjectile* Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass, Location, Rotation);
+	// 발사체의 소유자를 지정
+	// -> 발사체에서 GetOwner()호출 시, 
+	// 발사체를 소유한 클래스의 인스턴스를 리턴
+	Projectile->SetOwner(this);
 }

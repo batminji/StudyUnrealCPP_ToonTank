@@ -27,7 +27,7 @@ private:
 
 	// 각 데미지 타입에 따라 다른 기능을 구현할 수 있음.
 	UFUNCTION()
-	void DamageTaken(AActor* DamageActor, float Damage, const UDmageType* DamageType, class AController* Instigator, AActor* DamageCauser);
+	void DamageTaken(AActor* DamageActor, float Damage, const UDamageType* DamageType, class AController* Instigator, AActor* DamageCauser);
 
 public:	
 	// Called every frame
