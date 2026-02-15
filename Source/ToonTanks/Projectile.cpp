@@ -45,7 +45,7 @@ void AProjectile::Tick(float DeltaTime)
 void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 	// 발사체를 소유한 인스턴스가 반환됨.
-	auto MyOwner = GetOwner();
+	AActor* MyOwner = GetOwner();
 	if (MyOwner == nullptr)
 	{
 		Destroy();
@@ -53,8 +53,8 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 	}
 
 	// Apply Damage에 필요한 인자들 정의
-	auto MyOwnerInstigator = MyOwner->GetInstigatorController();
-	auto DamageTypeClass = UDamageType::StaticClass();
+	AController* MyOwnerInstigator = MyOwner->GetInstigatorController();
+	UClass* DamageTypeClass = UDamageType::StaticClass();
 
 	// nullptr은 아닌지, 자기 자신은 아닌지, 발사한 주체와 충돌한건 아닌지 확인
 	if (OtherActor && OtherActor != this && OtherActor != MyOwner)

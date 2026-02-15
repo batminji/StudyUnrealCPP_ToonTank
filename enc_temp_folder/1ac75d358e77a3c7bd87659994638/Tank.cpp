@@ -47,7 +47,6 @@ void ATank::HandleDestruction()
 	// 탱크는 파괴하지 않고 숨기기, 타이머 중단
 	SetActorHiddenInGame(true);
 	SetActorTickEnabled(false);
-	bAlive = false;
 }
 
 // Called when the game starts or when spawned
