@@ -7,8 +7,6 @@
 #include "Components/StaticMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Projectile.h"
-#include "Particles/ParticleSystem.h"
-
 // #include "DrawDebugHelpers.h"
 
 // Sets default values
@@ -33,9 +31,7 @@ ABasePawn::ABasePawn()
 void ABasePawn::HandleDestruction()
 {
 	// 시각/음향 효과
-	if (DeathParticles) {
-		UGameplayStatics::SpawnEmitterAtLocation(this, DeathParticles, GetActorLocation(), GetActorRotation());
-	}
+
 }
 
 void ABasePawn::RotateTurret(FVector LookAtTarget)
