@@ -41,11 +41,7 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 {
 	// 발사체를 소유한 인스턴스가 반환됨.
 	auto MyOwner = GetOwner();
-	if (MyOwner == nullptr)
-	{
-		Destroy();
-		return;
-	}
+	if (MyOwner == nullptr) return;
 
 	// Apply Damage에 필요한 인자들 정의
 	auto MyOwnerInstigator = MyOwner->GetInstigatorController();
@@ -55,11 +51,6 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 	if (OtherActor && OtherActor != this && OtherActor != MyOwner)
 	{
 		UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwnerInstigator, this, DamageTypeClass);
-		if (HitParticles)
-		{
-		// Particle
-		UGameplayStatics::SpawnEmitterAtLocation(this, HitParticles, GetActorLocation(), GetActorRotation());
-		}
+		Destroy();
 	}
-	Destroy();
 }
